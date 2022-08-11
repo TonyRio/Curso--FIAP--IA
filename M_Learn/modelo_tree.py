@@ -23,16 +23,17 @@ X_train_dia, X_test_dia, y_train_dia, y_test_dia = train_test_split(dataset_canc
 training_accuracy = []
 test_accuracy = []
 
-kernels = ['linear', 'rbf', 'sigmoid']
-for kernel in kernels:
-    svm_model = svm.SVC(kernel=kernel)
+prof_max = range(1,10)
 
-    svm_model.fit(X_train_can, y_train_can)
-    training_accuracy.append(svm_model.score(X_train_can, y_train_can))
-    test_accuracy.append(svm_model.score(X_test_can, y_test_can))
+for md in prof_max:
+  tree = DecisionTreeClassifier(max_depth=md,random_state=0)
+  tree.fit(X_train_can,y_train_can)
+  training_accuracy.append(tree.score(X_train_can, y_train_can))
+  test_accuracy.append(tree.score(X_test_can, y_test_can))
 
-print(plt.plot(kernels, training_accuracy, label='Acuracia no conj. treino'))
-print(plt.plot(kernels, test_accuracy, label='Acuracia no conj. teste'))
-print(plt.ylabel('Accuracy'))
-print(plt.xlabel('Kernels'))
+print(plt.plot(prof_max,training_accuracy, label='Acuracia no conj. treino'))
+print(plt.plot(prof_max,test_accuracy, label='Acuracia no conj. teste'))
+print(plt.ylabel('Acuracia'))
+
+print(plt.xlabel('Profundidade Maxima'))
 print(plt.legend())
