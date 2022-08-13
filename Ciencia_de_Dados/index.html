@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Preditor de doenças cardiacas</title>
+</head>
+<body>
+    <div class="container">
+        <h2 class="container-heading"><span class="heading_font">Predicao do coracao</span></h2>
+    </div>
+<div class="ml-container">
+    <form action="{{url_for('predict')}}" method="POST">
+        <br>
+        <h3>age</h3>
+        <input id = "first" name = "age" placeholder="in Year" required="required">
+        <br>
+        <input id = "second" name = "sexe" placeholder="Male(1) Female(0)" required="required">
+        <br>
+        <input id = "third" name ="cp" placeholder="" required="required">
+        <br>
+        <input id = "fourth" name="trestbps" placeholder="BAtidas" required="required">
+        <br>
+        <input id = "fifth" name="chol" placeholder="--" required="required">
+        <br>
+        <input id = "sixth" name="fbs" placeholder="--" required="required">
+        <br>
+        <input id = "seventh" name="restcg" placeholder="--" required="required">
+        <br>
+        <input id = "eighth" name="thalach" placeholder="--" required="required">
+        <br>
+        <input id = "nineth" name="exang" placeholder="--" required="required">
+        <br>
+        <input id = "tenth" name="oldpeak" placeholder="--" required="required">
+        <br>
+        <input id = "eleventh" name="slope" placeholder="--" required="required">
+        <br>
+        <input id = "twelfth" name="ca" placeholder="--r" required="required">
+        <br>
+        <input id = "thirteenth" name="thal" placeholder="--" required="required">
+        <br>
+        <button id = "sub" type="submit ">Submit</button>
+        <br>
+        <br>
+        <p class="footer-description">02022 Ciencia de Dados </p>
+
+
+    </form>
+</div>
+</body>
+</html>

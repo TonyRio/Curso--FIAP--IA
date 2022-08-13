@@ -48,32 +48,32 @@ print(X.head())
 print(y.head())
 
 # TREINAMENTO TEST SPLIT
-from sklearn.model_selection import train_test_split
+#from sklearn.model_selection import train_test_split
 
-x_train, x_test, y_train, y_test = train_test_split(X, y, test_size=0.25, random_state=0)
+#x_train, x_test, y_train, y_test = train_test_split(X, y, test_size=0.25, random_state=0)
 
-print(x_train.shape)
-print(x_test.shape)
+#print(x_train.shape)
+#print(x_test.shape)
 
 # Importando metricas de performance
-from sklearn.metrics import accuracy_score, confusion_matrix, classification_report
+#from sklearn.metrics import accuracy_score, confusion_matrix, classification_report
 
 # CRIANDO AS MAQUINAS PREDITIVAS
 # RandomForecastClassifier:
 from sklearn.ensemble import RandomForestClassifier
 
 RandomForest = RandomForestClassifier()
-RandomForest = RandomForest.fit(x_train, y_train)
+#RandomForest = RandomForest.fit(x_train, y_train)
 
 # PREDICAO
 
-y_pred = RandomForest.predict(x_test)
+#y_pred = RandomForest.predict(x_test)
 
 # Performance
 
-print("Acuracia : ", accuracy_score(y_test, y_pred))
-print(confusion_matrix(y_test, y_pred))
-print(classification_report(y_test, y_pred))
+#print("Acuracia : ", accuracy_score(y_test, y_pred))
+#print(confusion_matrix(y_test, y_pred))
+#print(classification_report(y_test, y_pred))
 
 # criando o pickle file
 filename = "Heart.pkl"
