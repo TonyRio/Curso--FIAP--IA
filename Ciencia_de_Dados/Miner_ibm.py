@@ -1,4 +1,5 @@
 # importacoes
+import pickle
 
 import pandas as pd
 import numpy as np
@@ -34,9 +35,9 @@ for feature in dataset.columns:
     print(feature, " : ", len(dataset[feature].unique()))
 # Mapa de correlacao
 
-# print(plt.figure(figsize=(12,8)))
-# print(sns.heatmap(dataset.corr(), annot=True, cmap = "YlGnBu"))
-# print(plt.show())
+print(plt.figure(figsize=(12,8)))
+print(sns.heatmap(dataset.corr(), annot=True, cmap = "YlGnBu"))
+print(plt.show())
 
 # dependencia e independencia das Features
 
@@ -73,3 +74,7 @@ y_pred = RandomForest.predict(x_test)
 print("Acuracia : ", accuracy_score(y_test, y_pred))
 print(confusion_matrix(y_test, y_pred))
 print(classification_report(y_test, y_pred))
+
+# criando o pickle file
+filename = "Heart.pkl"
+pickle.dump(RandomForest, open(filename, "wb"))
