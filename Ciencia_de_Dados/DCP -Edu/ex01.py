@@ -1,0 +1,2 @@
+from IPython.core.display import HTML
+HTML('<iframe width="378" height="198" src="https://www.youtube.com/watch?v=X4zOsMwvbJ0&list=PLeR2Gm6UuDXrEs0uUt6b68gQxOpRtKEXi&index=2" title="Ciencia de Dados"')
