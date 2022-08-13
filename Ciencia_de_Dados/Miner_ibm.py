@@ -6,7 +6,22 @@ import numpy as np
 import seaborn as sns
 import matplotlib.pyplot as plt
 
-dataset = pd.read_csv("Heart_data2.csv")
+
+dataset0 = pd.read_csv("Heart_data2.csv")
+dataset = dataset0.replace('',np.nan)
+dataset['sex'] = dataset['sex'].replace({'Female': 0})
+dataset['sex'] = dataset['sex'].replace({'Male': 1})
+dataset['education'] = dataset['education'].replace({'High School': float(5) })
+dataset['education'] = dataset['education'].replace({'Some High School': float(4) })
+dataset['education'] = dataset['education'].replace({'College': float(3) })
+dataset['education'] = dataset['education'].replace({'Vocational School': float(2) })
+dataset = dataset.dropna()
+
+
+
+
+
+print (dataset)
 # TOP 5
 print(dataset.head())
 
@@ -35,9 +50,9 @@ for feature in dataset.columns:
     print(feature, " : ", len(dataset[feature].unique()))
 # Mapa de correlacao
 
-print(plt.figure(figsize=(12,8)))
-print(sns.heatmap(dataset.corr(), annot=True, cmap = "YlGnBu"))
-print(plt.show())
+#print(plt.figure(figsize=(12,8)))
+#print(sns.heatmap(dataset.corr(), annot=True, cmap = "YlGnBu"))
+#print(plt.show())
 
 # dependencia e independencia das Features
 
@@ -48,32 +63,32 @@ print(X.head())
 print(y.head())
 
 # TREINAMENTO TEST SPLIT
-#from sklearn.model_selection import train_test_split
+from sklearn.model_selection import train_test_split
 
-#x_train, x_test, y_train, y_test = train_test_split(X, y, test_size=0.25, random_state=0)
+x_train, x_test, y_train, y_test = train_test_split(X, y, test_size=0.25, random_state=0)
 
-#print(x_train.shape)
-#print(x_test.shape)
+print(x_train.shape)
+print(x_test.shape)
 
 # Importando metricas de performance
-#from sklearn.metrics import accuracy_score, confusion_matrix, classification_report
+from sklearn.metrics import accuracy_score, confusion_matrix, classification_report
 
 # CRIANDO AS MAQUINAS PREDITIVAS
 # RandomForecastClassifier:
 from sklearn.ensemble import RandomForestClassifier
 
 RandomForest = RandomForestClassifier()
-#RandomForest = RandomForest.fit(x_train, y_train)
+RandomForest = RandomForest.fit(x_train, y_train)
 
 # PREDICAO
 
-#y_pred = RandomForest.predict(x_test)
+y_pred = RandomForest.predict(x_test)
 
 # Performance
 
-#print("Acuracia : ", accuracy_score(y_test, y_pred))
-#print(confusion_matrix(y_test, y_pred))
-#print(classification_report(y_test, y_pred))
+print("Acuracia : ", accuracy_score(y_test, y_pred))
+print(confusion_matrix(y_test, y_pred))
+print(classification_report(y_test, y_pred))
 
 # criando o pickle file
 filename = "Heart.pkl"
