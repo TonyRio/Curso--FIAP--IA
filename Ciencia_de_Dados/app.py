@@ -3,7 +3,7 @@ import numpy as np
 import pickle
 
 app = Flask(__name__)
-#model = pickle.load(open("Heart.pkl"))
+model = pickle.load(open("Heart.pkl"))
 
 @app.route("/", methods=['GET'])
 def Home():
@@ -27,7 +27,7 @@ def predict():
         thal = int(request.form['thal'])
 
         values = np.array([[age,sex,cp,trestbps,chol,fbs,restcg,thalach,exang,oldpeak,slope,ca,thal]])
-       # prediction = model.predict(values)
+        prediction = model.predict(values)
 
         return render_template('result.html')
 
