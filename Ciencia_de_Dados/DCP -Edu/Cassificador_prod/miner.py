@@ -64,6 +64,19 @@ modelo.fit(data, target)
 
 # PREVENDO CATEGORIA A PARTIR DA DESCRICAO
 print (modelo.predict(["caneta"]))
-print(encoder.classes_[3])
+print(encoder.classes_[11])
+
+# PROBABILIDADE DO PRODUTO
+probs =modelo.predict_proba(['INTEL'])
+print(probs)
+
+# PROBABILIDADE DE CATEGORIAS PARA O OBJETO
+guess = [(class_, probs.item(n)) for n, class_ in enumerate(encoder.classes_)]
+print (guess)
+
+# PROBABILIDADE AJUSTADA DE CATEGORIAS PARA O OBJETO INTEL
+from operator import itemgetter
+for cat, proba in sorted(guess, key=itemgetter(1), reverse=True):
+    print('{}: {:.4f'.format(cat,proba))
 
 
