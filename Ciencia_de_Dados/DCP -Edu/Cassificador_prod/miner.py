@@ -77,6 +77,6 @@ print (guess)
 # PROBABILIDADE AJUSTADA DE CATEGORIAS PARA O OBJETO INTEL
 from operator import itemgetter
 for cat, proba in sorted(guess, key=itemgetter(1), reverse=True):
-    print('{}: {:.4f'.format(cat,proba))
+    print('\n {}: {:.4f}'.format(cat,proba))
 
 
