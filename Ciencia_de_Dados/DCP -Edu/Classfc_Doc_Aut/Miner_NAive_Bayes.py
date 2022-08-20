@@ -18,4 +18,17 @@ twenty_train = fetch_20newsgroups(subset='train', categories = categories, shuff
 
 #CLASSES
 print(twenty_train.target_names)
+
+#VISUALIZAR 10 LINHAS DO REGISTRO
 print(len(twenty_train.data))
+print("\n".join(twenty_train.data[0].split("\n")[:10]))
+
+#VISUALIZAR VARIAVEIS TARGET
+print(twenty_train.target_names[twenty_train.target[3]])
+
+#O SCIKIT_LEARN REGISTRA OS LABELS COMO ARRAY DE NUMEROS, AFIM DE AUMENTAR VELOCIDADE
+print(twenty_train.target[:10])
+
+#VISUALIZAR AS CLASSES DOS 10 PRIMEIROS REGISTROS
+for t in twenty_train.target[:10]:
+    print(twenty_train.target_names[t])
