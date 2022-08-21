@@ -33,7 +33,7 @@ clf = MultinomialNB().fit(X_train_tfidf, twenty_train.target)
 print(clf)
 
 # PREVISOES
-docs_new = ['God is good' ]
+docs_new = ['Christian' ]
 X_new_counts = count_vect.transform(docs_new)
 X_new_tfidf = tfidf_transformer.transform(X_new_counts)
 predict = clf.predict(X_new_tfidf)
@@ -41,3 +41,25 @@ print(predict)
 
 for doc , category in zip(docs_new, predict):
     print('%r => %s' % (doc, twenty_train.target_names[category]))
+
+# CRIANDO PIPELINE - CLASSSIFICADOR COMPOSTO
+# Vetorizer => transformer =>classifier
+text_clf =Pipeline([('vect', CountVectorizer()),
+    ('tfidf', TfidfTransformer()),
+    ('clf',MultinomialNB()),])
+
+# FIT
+text_clf = text_clf.fit(twenty_train.data, twenty_train.target)
+
+# TESTAR A ACURACIA DESSE MODELO
+twenty_test = fetch_20newsgroups(subset='test', categories=categories, shuffle=True, random_state=42)
+docs_test = twenty_test.data
+predict = text_clf.predict(docs_test)
+print(np.mean(predict == twenty_test.target))
+
+# METRICAS
+print(metrics.classification_report(twenty_test.target, predict, target_names=twenty_test.target_names))
+
+#CONFUSION MATRIX
+
+print(metrics.confusion_matrix(twenty_test.target, predict))
