@@ -42,3 +42,12 @@ print(X_train_counts.shape)
 tf_transformer = TfidfTransformer(use_idf=False).fit(X_train_counts)
 X_train_tfidf = tf_transformer.fit_transform(X_train_counts)
 print(X_train_tfidf.shape)
+
+# D EOUTRA FORMA COMBINANDO AS FUNCOES
+tfidf_transformer = TfidfTransformer()
+X_train_tfidf =tfidf_transformer.fit_transform(X_train_counts)
+print(X_train_tfidf.shape)
+
+# CRIANDO O MODELO MULTINOMIAL
+clf = MultinomialNB().fit(X_train_tfidf, twenty_train.target)
+print(clf)
