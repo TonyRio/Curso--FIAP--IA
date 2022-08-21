@@ -32,3 +32,13 @@ print(twenty_train.target[:10])
 #VISUALIZAR AS CLASSES DOS 10 PRIMEIROS REGISTROS
 for t in twenty_train.target[:10]:
     print(twenty_train.target_names[t])
+# TOKENIZING
+count_vect = CountVectorizer()
+X_train_counts = count_vect.fit_transform(twenty_train.data)
+count_vect.vocabulary_.get(u'algorithm')
+print(X_train_counts.shape)
+
+# DE OCORRENCIAS A FREQUENCIAS - TERM FREQUENCY TIMES INVERSE DOCUMENT FREQUENCY (Tfidf)
+tf_transformer = TfidfTransformer(use_idf=False).fit(X_train_counts)
+X_train_tfidf = tf_transformer.fit_transform(X_train_counts)
+print(X_train_tfidf.shape)
