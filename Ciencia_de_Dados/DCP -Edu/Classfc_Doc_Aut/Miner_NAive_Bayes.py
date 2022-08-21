@@ -51,3 +51,13 @@ print(X_train_tfidf.shape)
 # CRIANDO O MODELO MULTINOMIAL
 clf = MultinomialNB().fit(X_train_tfidf, twenty_train.target)
 print(clf)
+
+# PREVISOES
+docs_new = ['Christian' ]
+X_new_counts = count_vect.transform(docs_new)
+X_new_tfidf = tfidf_transformer.transform(X_new_counts)
+predict = clf.predict(X_new_tfidf)
+print(predict)
+
+for doc , category in zip(docs_new, predict):
+    print('%r => %s' % (doc, twenty_train.target_names[category]))
